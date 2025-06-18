@@ -4,7 +4,7 @@ test('Manual form add, search, sort, delete', async ({ page }) => {
   await page.goto('http://localhost:5173');
 
   // Add 2 rows
-  await page.fill('input[name="firstName"]', 'A');
+  await page.fill('input[name="firstName"]', 'Kittipoj');
   await page.fill('input[name="lastName"]', 'B');
   await page.fill('input[name="email"]', 'a.b@example.com');
   await page.click('button:has-text("เพิ่ม")');
@@ -15,7 +15,7 @@ test('Manual form add, search, sort, delete', async ({ page }) => {
   await page.click('button:has-text("เพิ่ม")');
 
   // Search "A"
-  await page.fill('input[placeholder="Search..."]', 'kittipoj');
+  await page.fill('input[placeholder="Search..."]', 'Kittipoj');
   await expect(page.locator('table tbody tr')).toHaveCount(1);
 
   // Clear search
@@ -24,7 +24,7 @@ test('Manual form add, search, sort, delete', async ({ page }) => {
   await expect(page.locator('table tbody tr')).toHaveCount(2);
 
   // Delete row with "A"
-  const rowToDelete = page.locator('table tbody tr').filter({ hasText: 'kittipoj' });
+  const rowToDelete = page.locator('table tbody tr').filter({ hasText: 'Kittipoj' });
   await rowToDelete.locator('button[title="Delete"], button:has-text("Delete")').click();
 
   // Wait until row disappears
