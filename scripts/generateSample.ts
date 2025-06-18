@@ -9,7 +9,7 @@ async function generateSample() {
     { header: 'lastName', key: 'lastName', width: 20 },
     { header: 'email', key: 'email', width: 30 },
   ];
-  sheet.addRow({ firstName: 'John', lastName: 'Doe', email: 'john.doe@example.com' });
+  sheet.addRow({ firstName: 'Mos', lastName: 'eiei', email: 'mos@example.com' });
   sheet.addRow({ firstName: 'Jane', lastName: 'Smith', email: 'jane.smith@example.com' });
   sheet.addRow({ firstName: 'Bob', lastName: 'Johnson', email: 'bob.johnson@example.com' });
   const outPath = path.resolve(__dirname, '../tests/fixtures/sample-data.xlsx');
