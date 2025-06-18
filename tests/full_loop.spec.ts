@@ -24,6 +24,12 @@ function clearUserDataDir() {
   }
 }
 
+function ensureDownloadDir() {
+  if (!fs.existsSync(downloadDir)) {
+    fs.mkdirSync(downloadDir, { recursive: true });
+  }
+}
+
 const test = base.extend<{}, { context: any; page: any }>({
   context: async ({ }, use) => {
     const context = await chromium.launchPersistentContext(userDataDir, {
@@ -47,6 +53,7 @@ test.beforeAll(() => {
   clearUserDataDir();
 });
 
+// ลบ temp หลังรันชุดเทสต์ทั้งหมด
 test.afterAll(() => {
   clearUserDataDir();
 });
@@ -68,8 +75,11 @@ test('Full loop: add, export, download, delete, import back', async ({ page }) =
     page.waitForEvent('download'),
     page.click('button:has-text("ส่งออก Excel")'),
   ]);
+
   const suggestedName = await download.suggestedFilename();
   const downloadPath = path.join(downloadDir, suggestedName);
+
+  ensureDownloadDir();
   await download.saveAs(downloadPath);
   expect(fs.existsSync(downloadPath)).toBeTruthy();
 
