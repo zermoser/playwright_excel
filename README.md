@@ -5,28 +5,6 @@ This project is a modern React application scaffolded with Vite, written in Type
 
 ---
 
-## 📁 Project Structure
-
-📦react-excel-import
-┣ 📂playwright # Playwright scripts
-┃ ┣ 📜excel-import.spec.ts # Main test for Excel automation
-┣ 📂public
-┣ 📂src
-┃ ┣ 📂components # Reusable UI components
-┃ ┣ 📂pages # Main page(s) for viewing data
-┃ ┣ 📂utils # Utility functions (e.g., Excel reading)
-┃ ┣ 📜App.tsx # App entry point
-┃ ┣ 📜main.tsx # ReactDOM bootstrap
-┣ 📜.gitignore
-┣ 📜index.html
-┣ 📜package.json
-┣ 📜tsconfig.json
-┣ 📜vite.config.ts
-┣ 📜tailwind.config.ts
-┣ 📜postcss.config.js
-┗ 📜README.md
----
-
 ## 🚀 Getting Started
 
 ### Prerequisites
