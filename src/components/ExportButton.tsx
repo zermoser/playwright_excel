@@ -1,23 +1,36 @@
+// src/components/ExportButton.tsx
 import React from 'react';
 import { FieldConfig } from '../config/fields';
 import { exportToExcel } from '../utils/excelUtils';
+import { Download } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface ExportButtonProps {
   fields: FieldConfig[];
   rows: Record<string, any>[];
+  onEmpty?: () => void; // callback เมื่อไม่มีข้อมูล
 }
 
-const ExportButton: React.FC<ExportButtonProps> = ({ fields, rows }) => {
+const ExportButton: React.FC<ExportButtonProps> = ({ fields, rows, onEmpty }) => {
   const handleExport = () => {
     if (rows.length === 0) {
+      if (onEmpty) onEmpty();
       return;
     }
     exportToExcel(rows, fields);
   };
+
   return (
-    <button onClick={handleExport} className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-      Export Excel
-    </button>
+    <motion.button
+      type="button"
+      onClick={handleExport}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className="flex items-center bg-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-medium px-4 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+    >
+      <Download className="w-5 h-5 mr-2" />
+      ส่งออก Excel
+    </motion.button>
   );
 };
 

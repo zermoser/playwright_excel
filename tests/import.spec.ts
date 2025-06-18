@@ -10,12 +10,18 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Import valid Excel file', async ({ page }) => {
+  // คลิกปุ่ม Import
   const [fileChooser] = await Promise.all([
     page.waitForEvent('filechooser'),
-    page.click('label:has-text("Import Excel")'),
+    page.click('button:has-text("นำเข้า Excel")'),
   ]);
   await fileChooser.setFiles(fixturePath);
-  await expect(page.locator('text=นำเข้า')).toBeVisible();
+
+  // รอ Notification แบบ regex ว่า “นำเข้า <number> แถวสำเร็จ”
+  // ปรับ timeout ถ้าใช้เวลานานหน่อย
+  await expect(page.locator('text=/^นำเข้า \\d+ แถวสำเร็จ$/')).toBeVisible({ timeout: 5000 });
+
+  // ตรวจจำนวนแถวใน table เทียบกับไฟล์
   const workbook = XLSX.readFile(fixturePath);
   const rows = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]]);
   await expect(page.locator('table tbody tr')).toHaveCount(rows.length);

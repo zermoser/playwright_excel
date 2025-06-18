@@ -47,7 +47,7 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# ─── Misc ──────────────────────────────────────────────────────────────────────
+# ─── Misc ───────────────────────────────────────────────────────────────────────
 *.log
 *.lock
 .sass-cache/
@@ -70,3 +70,22 @@ coverage/
 # ─── OS Generated Files ─────────────────────────────────────────────────────────
 *.swp
 *~
+
+# ─── Playwright Test Artifacts ──────────────────────────────────────────────────
+# ละเว้นโฟลเดอร์รายงานผลทดสอบ (report) ของ Playwright
+playwright-report/
+# ละเว้นโฟลเดอร์ผลลัพธ์ test-result (หากใช้ output ชื่ออื่น เช่น test-results)
+test-results/
+# ละเว้นไฟล์ trace, artifacts, snapshots
+playwright-test-results/
+# ละเว้นโฟลเดอร์ screenshot/video/trace ที่ Playwright บันทึก (หากตั้งใน config)
+**/test-results/**         # อาจใช้ pattern ทั่วไปหากวางในหลายที่
+**/playwright-report/**    # หากวาง report ไว้ภายใน project หลายที่
+**/trace/**                # ถ้าตั้งบันทึก trace ลงโฟลเดอร์นี้
+**/screenshots/**          # ถ้าบันทึกภาพหน้าจอขณะทดสอบ
+**/videos/**               # ถ้าบันทึกวิดีโอตอนทดสอบ
+# (ถ้าใช้ชื่ออื่นในการ config Playwright ให้ปรับชื่อ folder/pattern ตามนั้น)
+
+# ─── เพิ่มเติม (ถ้ามี) ────────────────────────────────────────────────────────
+# ละเว้นไฟล์ผลลัพธ์จากการรันทดสอบอื่นๆ หรือ artifacts ต่างๆ ตามต้องการ:
+# เช่น Cypress, Jest snapshots ฯลฯ
