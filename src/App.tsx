@@ -90,7 +90,7 @@ const App: React.FC = () => {
                 onClick={handleClearAll}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white font-medium px-4 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-300 transition"
+                className="flex items-center bg-red-800 text-white font-medium px-4 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-300 transition"
               >
                 <FileMinus className="w-5 h-5 mr-2" />
                 ล้างทั้งหมด

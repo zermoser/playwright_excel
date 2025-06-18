@@ -74,7 +74,7 @@ const ImportButton: React.FC<ImportButtonProps> = ({ fields, onImport, onError }
         onClick={handleClick}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="flex items-center bg-gradient-to-r from-green-400 to-green-600 hover:from-green-500 hover:to-green-700 text-white font-medium px-4 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-300 transition"
+        className="flex items-center bg-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-medium px-4 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
       >
         <FilePlus className="w-5 h-5 mr-2" />
         นำเข้า Excel

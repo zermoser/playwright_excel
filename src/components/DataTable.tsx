@@ -71,7 +71,7 @@ const DataTable: React.FC<DataTableProps> = ({ fields, rows, removeRow }) => {
         />
         <button
           onClick={exportToExcel}
-          className="ml-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          className="flex items-center bg-green-600 hover:from-green-500 hover:to-green-700 text-white font-medium px-4 py-2 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-green-300 transition"
         >
           Export to Excel
         </button>
