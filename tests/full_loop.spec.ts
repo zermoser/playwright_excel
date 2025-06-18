@@ -4,11 +4,28 @@ import * as path from 'path';
 
 const baseURL = 'http://localhost:5173';
 const downloadDir = path.resolve(__dirname, './download_excel');
+const userDataDir = path.resolve(__dirname, './.tmp-user-data');
 
-// Extend base test to use persistent context for download directory
+function clearDownloadDir() {
+  if (fs.existsSync(downloadDir)) {
+    const files = fs.readdirSync(downloadDir);
+    for (const file of files) {
+      const filePath = path.join(downloadDir, file);
+      if (fs.statSync(filePath).isFile()) {
+        fs.unlinkSync(filePath);
+      }
+    }
+  }
+}
+
+function clearUserDataDir() {
+  if (fs.existsSync(userDataDir)) {
+    fs.rmSync(userDataDir, { recursive: true, force: true });
+  }
+}
+
 const test = base.extend<{}, { context: any; page: any }>({
   context: async ({ }, use) => {
-    const userDataDir = path.resolve(__dirname, './.tmp-user-data');
     const context = await chromium.launchPersistentContext(userDataDir, {
       headless: false,
       downloadsPath: downloadDir,
@@ -24,7 +41,16 @@ const test = base.extend<{}, { context: any; page: any }>({
   },
 });
 
-// Navigate before each test
+// ลบก่อนรันชุดเทสต์ทั้งหมด
+test.beforeAll(() => {
+  clearDownloadDir();
+  clearUserDataDir();
+});
+
+test.afterAll(() => {
+  clearUserDataDir();
+});
+
 test.beforeEach(async ({ page }) => {
   await page.goto(baseURL);
 });
